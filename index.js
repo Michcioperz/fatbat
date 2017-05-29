@@ -109,7 +109,7 @@ discord.on('message', msg => {
 })
 
 
-srv.listen(process.env.LISTEN_PATH, function() {
+app.listen(parseInt(process.env.LISTEN_PORT), function() {
   console.log("up")
 })
 
