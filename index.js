@@ -65,7 +65,7 @@ function fbVerify(req, res, buf) {
   throw new Error('Could not validate the request signature.')
 }
 
-app.get('/fb-webhook', function(req, res) {
+app.get('/fb-webhook', bodyParser.json({verify: fbVerify}), function(req, res) {
   if (req.query['hub-mode'] === 'subscribe' && req.query['hub.verify_token'] === FB_VALID_TOKEN) res.status(200).send(req.query['hub.challenge'])
   else res.sendStatus(403)
 })
